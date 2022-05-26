@@ -1,0 +1,116 @@
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# Outputs
+data-*
+plot*.pdf
+out*
+data
+*data
+plot
+
+# Compiled values
+*-monitor
+
+# Python virtual env
+venv3
+venv
+
+# Binaries / Object files
+bin
+obj
+out
+
+# Other stuff
+*.pyc
+Session.vim
+tags
+.DS_Store
+
+# sync files
+*_file
+
+# asm files
+*.s
+
+# compressed files
+*.tar.gz
+*.tar.bj2
+
+# dirs for other experiments
+2/
+3/
+
+*png
+forkingcloud
+*csv
+*pdf
+depthfixed/
+
+__MACOSX/
+*zip
+*_command.txt
+depthfixed_more/
+.overcommit.yml
+
+*.log
+
+*.bz2
+
+SKUs/
+grant_sweep/
+*dat
+intel12/
+*.bak
+tags.lock
+tags.temp
