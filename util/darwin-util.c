@@ -44,6 +44,8 @@ uint64_t get_time_nano(int32_t zero_dependency)
 // Kext specific stuff below
 //---------------------------------------------------------------------
 
+#if __arm__ && KEXT
+
 static void set_sysctl(const char *name, uint64_t v)
 {
 	if (sysctlbyname(name, NULL, 0, &v, sizeof v)) {
@@ -70,6 +72,7 @@ sighandler()
 
 void init_timer(void)
 {
+
 	MEM_BARRIER;
 	set_sysctl("kern.pmcr0", 0x3003400ff4ff);
 	MEM_BARRIER;
@@ -97,3 +100,4 @@ void reset_timer(void)
 {
 	RESET_TIMER;
 }
+#endif // __arm__ && KEXT

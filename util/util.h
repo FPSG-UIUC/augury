@@ -5,6 +5,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#if __x86_64__ || __amd64__
+
+// All three defined just in case some code is calling
+// just insn sync or just data sync
+#define INST_SYNC asm volatile("cpuid")
+#define DATA_SYNC asm volatile("cpuid")
+#define MEM_BARRIER asm volatile("cpuid")
+
+#else
 // Instruction Synchronization Barrier flushes the pipeline in the processor,
 // so that all instructions following the ISB are fetched from cache or memory,
 // after the instruction has been completed.
@@ -21,6 +30,7 @@
 #define MEM_BARRIER \
 	DATA_SYNC;      \
 	INST_SYNC
+#endif // __x86_64__ || __amd64__
 
 #define MSB_MASK 0x8000000000000000
 
@@ -89,7 +99,6 @@ void init_timer();
 void init_retry_barrier();
 void set_retry_barrier();
 void reset_timer();
-#endif
 
 // KEXT Stuff
 #define SREG_PMCR0 "S3_1_c15_c0_0"
@@ -125,6 +134,6 @@ void reset_timer();
 
 #define RESET_TIMER SREG_WRITE(SREG_PMC0, 0)
 #define READ_TIMER SREG_READ(SREG_PMC0)
-
+#endif // KEXT
 
 #endif // _UTIL_H
