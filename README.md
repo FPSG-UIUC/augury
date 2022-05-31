@@ -10,9 +10,9 @@ webpage and paper link").
 
 ### Building the code
 
-Running `make` should be enough to build the code. Note that the code
-*will not build on non ARM architectures* because we use ARM specific
-synchronization barriers such as the `isb` and `dsb` instructions.
+Running `make` should be enough to build the code. We have only tested
+the code and compiler specific features using `clang`. All of this
+should work on `gcc` as well, but we haven't verified this.
 
 There are additional build options available for configuring in the
 `Makefile` depending on how you want to run the experiments. For
@@ -138,7 +138,7 @@ pointers are then kicked out of cache.
 After iterating through the array of pointers and activating the DMP,
 the selected pointer will be prefetched by the DMP *but never accessed
 by an instruction*. After iterating through the array of pointers, the
-program then checks the access times of each of the pointers. At the
+ program then checks the access times of each of the pointers. At the
 end of the program execution, these access times are printed.
 
 If the machine running the code has a DMP, then the access times of
@@ -181,3 +181,30 @@ After testing another system, plot the AOP and IMP data using:
 ```
 
 These scripts will only work if the filenames are unchanged.
+
+## Packaging the experiment code
+
+In our paper, we mention running existence experiments for both the
+2-level, pointer-chasing DMP and the indirection-based DMP. The code
+package that we used to test across a bunch of X86_64 and ARM
+processors is all of the C code in this repo and the `package.sh`,
+`runme.sh`, and `test_sweep.sh` shell scripts. These shell scripts
+have been tested to work with both `zsh` and `bash`. 
+
+To run the packaged up experiment code, run `bash package.sh` and the
+packaged up experiment code will be in the directory specified in
+`package.sh` (by default it is
+`dmp_existence_experiment_package_long`). In this directory, there are
+the `runme.sh` and `test_sweep.sh` scripts. Run `bash runme.sh`, and
+after a while, the results for different AoP sizes will be dumped in
+the directory. Result files named like `a...data` and `i...data`
+contain the data from the runs for the AoP (2-level, pointer-chasing
+DMP) and the IMP (multi-level, indirection-based DMP)
+respectively. The files `ab...data` and `ib...data` contain the same
+types of data but for the respective baseline runs (see the Existence
+section of our paper for more info).
+
+If the rest of the above instructions have already worked for you, you
+probably **do not need to run this packaged experiment code**. It is
+just here for convenience if you want to package the code up to send
+to your friends with cool processors for running like we did.
