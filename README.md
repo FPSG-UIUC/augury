@@ -188,14 +188,14 @@ In our paper, we mention running existence experiments for both the
 2-level, pointer-chasing DMP and the indirection-based DMP. The code
 package that we used to test across a bunch of X86_64 and ARM
 processors is all of the C code in this repo and the `package.sh`,
-`runme.sh`, and `test_sweep.sh` shell scripts. These shell scripts
-have been tested to work with both `zsh` and `bash`. 
+`runme.sh`, and `package_sweep.sh` shell scripts. These shell scripts
+have been tested to work with both `zsh` and `bash`.
 
 To run the packaged up experiment code, run `bash package.sh` and the
 packaged up experiment code will be in the directory specified in
 `package.sh` (by default it is
 `dmp_existence_experiment_package_long`). In this directory, there are
-the `runme.sh` and `test_sweep.sh` scripts. Run `bash runme.sh`, and
+the `runme.sh` and `package_sweep.sh` scripts. Run `bash runme.sh`, and
 after a while, the results for different AoP sizes will be dumped in
 the directory. Result files named like `a...data` and `i...data`
 contain the data from the runs for the AoP (2-level, pointer-chasing

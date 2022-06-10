@@ -15,7 +15,7 @@ else
     NAME=$(sysctl -a  | grep "brand_string" | head -n1 | tr ' ' '_' | tr -d '\t')
 fi
 
-for x in 2 4 8 16 32 64 128 256 512 1024; do echo "Starting size $x"; ./test_sweep.sh 0 $NAME ${x}; done;
+for x in 2 4 8 16 32 64 128 256 512 1024; do echo "Starting size $x"; ./package_sweep.sh 0 $NAME ${x}; done;
 
 uname -a > sweep_out/uname
 echo $NAME > sweep_out/cpuinfo
